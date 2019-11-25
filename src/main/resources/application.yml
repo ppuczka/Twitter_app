@@ -3,15 +3,14 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-    jpa:
-      database-platform: org.hibernate.dialect.MySQL5Dialect
-      show-sql: true
-      generate-ddl: true
-      hibernate:
-              ddl-auto: update
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
   datasource:
     platform: mysql
-    url: jdbc:mysql://localhost:3306/twitter2?useSSL=false&useTimezone=true&serverTimezone=UTC
-    username: root
-    password: root
-    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/twitter?useSSL=false&useTimezone=true&serverTimezone=UTC
+    username: vampirec
+    password: password
