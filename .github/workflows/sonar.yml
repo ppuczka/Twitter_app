@@ -1,22 +1,22 @@
 name: SonarCloud
-K
+
 on: [push]
 
 jobs:
   verify:
     name: perform tests
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Build with Maven
+      - name: Preform unit tests with Maven
         run: mvn -B test --file pom.xml
 
-
   sonar:
-    name: analyse with sonar
+    name: Analyse with Sonar
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,3 +27,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build:
+    name: build project
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build with Maven
+        run: mvn -B package -DskipTests --file pom.xml
