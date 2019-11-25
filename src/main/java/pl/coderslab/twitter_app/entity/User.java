@@ -17,15 +17,23 @@ public class User {
 //  private String username;
 
   @NotEmpty
-  private String password;
-
-  private boolean enabled;
-
-  @NotEmpty
   @Email
   @Column(unique = true)
   @Size(max = 50)
   private String email;
+
+  @NotEmpty
+  private String password;
+
+  private boolean enabled;
+
+  public User() {
+  }
+
+  public User(@NotEmpty @Email @Size(max = 50) String email, @NotEmpty String password) {
+    this.email = email;
+    this.password = password;
+  }
 
   public Long getId() {
     return id;
