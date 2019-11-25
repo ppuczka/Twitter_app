@@ -1,10 +1,10 @@
-name: SonarCloud
+name: Complete Build
 
 on: [push]
 
 jobs:
   verify:
-    name: perform tests
+    name: Perform tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -29,7 +29,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
-    name: build project
+    name: Build project
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v1
