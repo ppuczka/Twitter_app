@@ -6,6 +6,7 @@
     <groupId>pl.coderslab</groupId>
     <artifactId>twitter_app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>twitter_app</name>
     <description></description>
@@ -22,6 +23,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <java.version>1.8</java.version>
+        <!-- SonarCloud -->
+        <sonar.projectKey>ppuczka_Twitter_app</sonar.projectKey>
+        <sonar.organization>ppuczka</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -106,12 +111,21 @@
     </dependencies>
 
     <build>
+    <pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <!-- see versions at https://search.maven.org/search?q=g:org.sonarsource.scanner.maven%20AND%20a:sonar-maven-plugin -->
+                <version>3.6.1.1688</version>
+            </plugin>
         </plugins>
+    </pluginManagement>
     </build>
 
 </project>
