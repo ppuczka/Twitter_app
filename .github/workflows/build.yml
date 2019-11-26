@@ -45,3 +45,5 @@ jobs:
           name: ispeakcode/docker-githubaction
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: "./target/twitter_app-0.0.1-SNAPSHOT.jar"
+
