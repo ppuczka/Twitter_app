@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Run tests with Maven
+      - name: Perform Sonar check 
         uses: xlui/action-maven-cli/jdk11@master
         with:
           args: clean package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
