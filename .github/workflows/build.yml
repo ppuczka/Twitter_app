@@ -39,9 +39,13 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
-      - name: Publish to Docker Repository
-        uses: elgohr/Publish-Docker-Github-Action@master
+        if: success()
+      - run: commandToBuildYourProject.sh
+      - name: Dockerize
+        uses: manusa/actions-publish-docker@master
         with:
-          name: ispeakcode/docker-githubaction
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          name: ppuczka/twitter_app
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      
+     
