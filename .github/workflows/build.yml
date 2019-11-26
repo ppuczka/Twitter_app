@@ -42,7 +42,7 @@ jobs:
       - name: Publish to Docker Repository
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ispeakcode/docker-githubaction
+          name: vampirec/twitter_app
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: "./target/twitter_app-0.0.1-SNAPSHOT.jar"
