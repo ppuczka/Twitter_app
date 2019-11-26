@@ -29,7 +29,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
-    name: Build project
+    name: Build & dockerize project 
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v1
@@ -39,3 +39,9 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
+      - name: Publish to Docker Repository
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ispeakcode/docker-githubaction
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
