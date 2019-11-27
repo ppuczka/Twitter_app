@@ -1,0 +1,49 @@
+name: Build and publish to DockerHub
+
+on: [push]
+
+jobs:
+  verify:
+    name: Perform tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Preform unit tests with Maven
+        run: mvn -B test --file pom.xml
+
+  sonar:
+    name: Analyse with Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Perform Sonar check 
+        uses: xlui/action-maven-cli/jdk11@master
+        with:
+          args: clean package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build:
+    name: Build & publish to DockerHub
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build with Maven
+        run: mvn -B package -DskipTests --file pom.xml
+      - name: Publish to DockerHub
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: vampirec/twitter_app
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: "./target/twitter_app-0.0.1-SNAPSHOT.jar"
+
