@@ -6,7 +6,6 @@
     <groupId>pl.coderslab</groupId>
     <artifactId>twitter_app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>twitter_app</name>
     <description></description>
